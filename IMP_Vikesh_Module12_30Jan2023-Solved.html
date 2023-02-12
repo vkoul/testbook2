@@ -1,0 +1,1717 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Imperial Business Analytics OH: WK12-SVM &#8212; Case Study Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Case Study Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Case Studies Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH3_28Nov.html">
+   Imperial Business Analytics- 🐍 Python Primer 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Supply_gap_analysis.html">
+   Eda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH4.html">
+   Imperial Business Analytics- 🐍 Python Primer 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH5--Class.html">
+   Imperial Business Analytics- 🐍 Python Primer 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.html">
+   Imperial Business Analytics- WK8- Estimators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH8_10Jan-23_Complete.html">
+   Imperial Business Analytics OH: WK9- Correlation &amp; Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH9_16Jan-23_Conversion_Case%20Study_final.html">
+   Imperial Business Analytics: WK10- ML and K-NN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP-BA-M11-PredictingCancellation_23Jan-Solved.html">
+   Imperial Business Analytics OH: WK11- Classification and Regression Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/IMP_Vikesh_Module12_30Jan2023-Solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIMP_Vikesh_Module12_30Jan2023-Solved.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/IMP_Vikesh_Module12_30Jan2023-Solved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machines-overview">
+   Support Vector Machines Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algo-steps">
+     Algo Steps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advantages">
+     Advantages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disadvantages">
+     Disadvantages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usages">
+     Usages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-guess-the-voice">
+   Case Study 📓 - Guess the Voice?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-dictionary">
+   Data Dictionary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-importing-the-required-modules-font">
+   <font color="darkred">
+    Importing the required modules
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-importing-the-dataset-font">
+   <font color="darkred">
+    Importing the dataset
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-eda-font">
+   <font color="darkred">
+    EDA 💥⚡
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-building">
+   Model Building
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-pre-processing">
+     Data Pre-processing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#label-encoding">
+       Label Encoding
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standarization">
+       Standarization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-dummy-model">
+     Build a dummy model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svm-model">
+     SVM Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-the-gs-results">
+   Checking the GS results
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Imperial Business Analytics OH: WK12-SVM</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machines-overview">
+   Support Vector Machines Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algo-steps">
+     Algo Steps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advantages">
+     Advantages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disadvantages">
+     Disadvantages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usages">
+     Usages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-guess-the-voice">
+   Case Study 📓 - Guess the Voice?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-dictionary">
+   Data Dictionary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-importing-the-required-modules-font">
+   <font color="darkred">
+    Importing the required modules
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-importing-the-dataset-font">
+   <font color="darkred">
+    Importing the dataset
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkred-eda-font">
+   <font color="darkred">
+    EDA 💥⚡
+   </font>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-building">
+   Model Building
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-pre-processing">
+     Data Pre-processing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#label-encoding">
+       Label Encoding
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standarization">
+       Standarization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-dummy-model">
+     Build a dummy model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svm-model">
+     SVM Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-the-gs-results">
+   Checking the GS results
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="alert alert-block alert-success">
+<section class="tex2jax_ignore mathjax_ignore" id="imperial-business-analytics-oh-wk12-svm">
+<h1>Imperial Business Analytics OH: WK12-SVM<a class="headerlink" href="#imperial-business-analytics-oh-wk12-svm" title="Permalink to this headline">#</a></h1>
+<p>👨‍🏫 <strong>Vikesh K</strong><br />
+📅 <strong>[30-Jan-2023]</strong> ⏰ <strong>7pm UTC</strong><br />
+<strong>Office Hour # 11</strong></p>
+</div><p><strong>Note: We have two Jupyter notebooks this week. Please check out the other jupyter notebook</strong></p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Imperial-Business-Analytics-OH:-WK12-SVM" data-toc-modified-id="Imperial-Business-Analytics-OH:-WK12-SVM-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Imperial Business Analytics OH: WK12-SVM</a></span><ul class="toc-item"><li><span><a href="#Support-Vector-Machines-Overview" data-toc-modified-id="Support-Vector-Machines-Overview-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Support Vector Machines Overview</a></span><ul class="toc-item"><li><span><a href="#Algo-Steps" data-toc-modified-id="Algo-Steps-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Algo Steps</a></span></li><li><span><a href="#Advantages" data-toc-modified-id="Advantages-1.1.2"><span class="toc-item-num">1.1.2&nbsp;&nbsp;</span>Advantages</a></span></li><li><span><a href="#Disadvantages" data-toc-modified-id="Disadvantages-1.1.3"><span class="toc-item-num">1.1.3&nbsp;&nbsp;</span>Disadvantages</a></span></li><li><span><a href="#Usages" data-toc-modified-id="Usages-1.1.4"><span class="toc-item-num">1.1.4&nbsp;&nbsp;</span>Usages</a></span></li></ul></li><li><span><a href="#Case-Study-📓---Guess-the-Voice?" data-toc-modified-id="Case-Study-📓---Guess-the-Voice?-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Case Study 📓 - Guess the Voice?</a></span></li><li><span><a href="#Data-Dictionary" data-toc-modified-id="Data-Dictionary-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Data Dictionary</a></span></li><li><span><a href="#-Importing-the-required-modules-" data-toc-modified-id="-Importing-the-required-modules--1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span><font color="darkred"> Importing the required modules </font></a></span></li><li><span><a href="#-Importing-the-dataset-" data-toc-modified-id="-Importing-the-dataset--1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span><font color="darkred"> Importing the dataset </font></a></span></li><li><span><a href="#-EDA-💥⚡-" data-toc-modified-id="-EDA-💥⚡--1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span><font color="darkred"> EDA 💥⚡ </font></a></span></li><li><span><a href="#Model-Building" data-toc-modified-id="Model-Building-1.7"><span class="toc-item-num">1.7&nbsp;&nbsp;</span>Model Building</a></span><ul class="toc-item"><li><span><a href="#Data-Pre-processing" data-toc-modified-id="Data-Pre-processing-1.7.1"><span class="toc-item-num">1.7.1&nbsp;&nbsp;</span>Data Pre-processing</a></span><ul class="toc-item"><li><span><a href="#Label-Encoding" data-toc-modified-id="Label-Encoding-1.7.1.1"><span class="toc-item-num">1.7.1.1&nbsp;&nbsp;</span>Label Encoding</a></span></li><li><span><a href="#Standarization" data-toc-modified-id="Standarization-1.7.1.2"><span class="toc-item-num">1.7.1.2&nbsp;&nbsp;</span>Standarization</a></span></li></ul></li><li><span><a href="#Build-a-dummy-model" data-toc-modified-id="Build-a-dummy-model-1.7.2"><span class="toc-item-num">1.7.2&nbsp;&nbsp;</span>Build a dummy model</a></span></li><li><span><a href="#SVM-Model" data-toc-modified-id="SVM-Model-1.7.3"><span class="toc-item-num">1.7.3&nbsp;&nbsp;</span>SVM Model</a></span></li></ul></li><li><span><a href="#Checking-the-GS-results" data-toc-modified-id="Checking-the-GS-results-1.8"><span class="toc-item-num">1.8&nbsp;&nbsp;</span>Checking the GS results</a></span></li></ul></li></ul></div><div class="alert alert-block alert-info">
+<section id="support-vector-machines-overview">
+<h2>Support Vector Machines Overview<a class="headerlink" href="#support-vector-machines-overview" title="Permalink to this headline">#</a></h2>
+<p><em><strong>Technique :  Classifies by finding a separator</strong></em></p>
+<p><img alt="svm_process.png" src="attachment:svm_process.png" /></p>
+<section id="algo-steps">
+<h3>Algo Steps<a class="headerlink" href="#algo-steps" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Mapping data to a feature space</p>
+<ul>
+<li><p>for example a data with two data columns gets mapped to a 2-d chart, forming a line</p></li>
+<li><p>Here lies one challenge, we need to map the data in the manner to highlight the differences between the values</p></li>
+<li><p>This process is called <code class="docutils literal notranslate"><span class="pre">kernelling</span></code> and mathemtical function is <code class="docutils literal notranslate"><span class="pre">kernel</span></code></p></li>
+</ul>
+</li>
+<li><p>Find a separator between the points that maximises the margin</p>
+<ul>
+<li><p>It will be a straight line in two dimensional space and a hyperplane in higher dimensions</p></li>
+<li><p>The separator placement is determined by the values closer to the margin, hence called <code class="docutils literal notranslate"><span class="pre">support</span> <span class="pre">vectors</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Accurate in high-dimensional spaces</p></li>
+<li><p>Memory efficient; as it doesn’t rely on the complete data and relies only on support vectors</p></li>
+</ul>
+</section>
+<section id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Prone for over-fitting if features is much greater than samples</p></li>
+<li><p>No probability estimation</p></li>
+</ul>
+</section>
+<section id="usages">
+<h3>Usages<a class="headerlink" href="#usages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Good for Image recognition</p></li>
+<li><p>Effective in text mining; especially due to efficiency in high-dimensional data</p></li>
+<li><p>Good for Gene Classification</p></li>
+<li><p>Other classification tasks</p></li>
+</ul>
+ </div>
+<div class="alert alert-block alert-danger">
+</section>
+</section>
+<section id="case-study-guess-the-voice">
+<h2>Case Study 📓 - Guess the Voice?<a class="headerlink" href="#case-study-guess-the-voice" title="Permalink to this headline">#</a></h2>
+<p><img alt="voice_recignizition.jpg" src="attachment:voice_recignizition.jpg" /></p>
+<p>XYZ Studios is Europe’s most prominent radio production company. It recently launched a reality show. The show is about finding a new star jockey who will be the star presenter on the upcoming shows.
+Participants will have to upload their voice clips online in the first round. Then, the clip will be evaluated by experts for selection for the next round.<br />
+There is separation in the evaluation in the first round for male and female voices. The response to the show was unprecedented, and the company was flooded with voice clips. Resultantly, there is a need to classify the voice as either male or female for the first level of filtration.</p>
+<p><strong>You are working as a data scientist working in the company and have access to the software that breaks down each voice clip into its constituent components. Can you build a classifier for the selection team?</strong></p>
+</section>
+<section id="data-dictionary">
+<h2>Data Dictionary<a class="headerlink" href="#data-dictionary" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">meanfreq</span></code>: mean frequency (in kHz)<br />
+<code class="docutils literal notranslate"><span class="pre">sd</span></code>: standard deviation of frequency<br />
+<code class="docutils literal notranslate"><span class="pre">median</span></code>: median frequency (in kHz)<br />
+<code class="docutils literal notranslate"><span class="pre">Q25</span></code>: first quantile (in kHz)<br />
+<code class="docutils literal notranslate"><span class="pre">Q75</span></code>: third quantile (in kHz)<br />
+<code class="docutils literal notranslate"><span class="pre">IQR</span></code>: interquantile range (in kHz)<br />
+<code class="docutils literal notranslate"><span class="pre">skew</span></code>: skewness (see note in specprop description)<br />
+<code class="docutils literal notranslate"><span class="pre">kurt</span></code>: kurtosis (see note in specprop description)<br />
+<code class="docutils literal notranslate"><span class="pre">sp.ent</span></code>: spectral entropy<br />
+<code class="docutils literal notranslate"><span class="pre">sfm</span></code>: spectral flatness<br />
+<code class="docutils literal notranslate"><span class="pre">mode</span></code>: mode frequency<br />
+<code class="docutils literal notranslate"><span class="pre">centroid</span></code>: frequency centroid (see specprop)<br />
+<code class="docutils literal notranslate"><span class="pre">peakf</span></code>: peak frequency (frequency with highest energy)<br />
+<code class="docutils literal notranslate"><span class="pre">meanfun</span></code>: average of fundamental frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">minfun</span></code>: minimum fundamental frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">maxfun</span></code>: maximum fundamental frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">meandom</span></code>: average of dominant frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">mindom</span></code>: minimum of dominant frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">maxdom</span></code>: maximum of dominant frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">dfrange</span></code>: range of dominant frequency measured across acoustic signal<br />
+<code class="docutils literal notranslate"><span class="pre">modindx</span></code>: modulation index. Calculated as the accumulated absolute difference between adjacent measurements of fundamental   frequencies divided by the frequency range<br />
+<code class="docutils literal notranslate"><span class="pre">label</span></code>: male or female</p>
+</section>
+<section id="font-color-darkred-importing-the-required-modules-font">
+<h2><font color= darkred> Importing the required modules </font><a class="headerlink" href="#font-color-darkred-importing-the-required-modules-font" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># data viz</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span> <span class="c1"># styling your charts </span>
+
+<span class="c1"># pre-processing</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># modeling</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+
+<span class="c1"># validation</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span> 
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All modules loaded&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All modules loaded
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="font-color-darkred-importing-the-dataset-font">
+<h2><font color= darkred> Importing the dataset </font><a class="headerlink" href="#font-color-darkred-importing-the-dataset-font" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loading the data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/vkoul/data/main/misc/voice.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># used to read csv files</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="font-color-darkred-eda-font">
+<h2><font color= darkred> EDA 💥⚡ </font><a class="headerlink" href="#font-color-darkred-eda-font" title="Permalink to this headline">#</a></h2>
+<p><strong>Data Checks</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3168, 21)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3168 entries, 0 to 3167
+Data columns (total 21 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   meanfreq  3168 non-null   float64
+ 1   sd        3168 non-null   float64
+ 2   median    3168 non-null   float64
+ 3   Q25       3168 non-null   float64
+ 4   Q75       3168 non-null   float64
+ 5   IQR       3168 non-null   float64
+ 6   skew      3168 non-null   float64
+ 7   kurt      3168 non-null   float64
+ 8   sp.ent    3168 non-null   float64
+ 9   sfm       3168 non-null   float64
+ 10  mode      3168 non-null   float64
+ 11  centroid  3168 non-null   float64
+ 12  meanfun   3168 non-null   float64
+ 13  minfun    3168 non-null   float64
+ 14  maxfun    3168 non-null   float64
+ 15  meandom   3168 non-null   float64
+ 16  mindom    3168 non-null   float64
+ 17  maxdom    3168 non-null   float64
+ 18  dfrange   3168 non-null   float64
+ 19  modindx   3168 non-null   float64
+ 20  label     3168 non-null   object 
+dtypes: float64(20), object(1)
+memory usage: 519.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>meanfreq</th>
+      <th>sd</th>
+      <th>median</th>
+      <th>Q25</th>
+      <th>Q75</th>
+      <th>IQR</th>
+      <th>skew</th>
+      <th>kurt</th>
+      <th>sp.ent</th>
+      <th>sfm</th>
+      <th>...</th>
+      <th>centroid</th>
+      <th>meanfun</th>
+      <th>minfun</th>
+      <th>maxfun</th>
+      <th>meandom</th>
+      <th>mindom</th>
+      <th>maxdom</th>
+      <th>dfrange</th>
+      <th>modindx</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.059781</td>
+      <td>0.064241</td>
+      <td>0.032027</td>
+      <td>0.015071</td>
+      <td>0.090193</td>
+      <td>0.075122</td>
+      <td>12.863462</td>
+      <td>274.402906</td>
+      <td>0.893369</td>
+      <td>0.491918</td>
+      <td>...</td>
+      <td>0.059781</td>
+      <td>0.084279</td>
+      <td>0.015702</td>
+      <td>0.275862</td>
+      <td>0.007812</td>
+      <td>0.007812</td>
+      <td>0.007812</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.066009</td>
+      <td>0.067310</td>
+      <td>0.040229</td>
+      <td>0.019414</td>
+      <td>0.092666</td>
+      <td>0.073252</td>
+      <td>22.423285</td>
+      <td>634.613855</td>
+      <td>0.892193</td>
+      <td>0.513724</td>
+      <td>...</td>
+      <td>0.066009</td>
+      <td>0.107937</td>
+      <td>0.015826</td>
+      <td>0.250000</td>
+      <td>0.009014</td>
+      <td>0.007812</td>
+      <td>0.054688</td>
+      <td>0.046875</td>
+      <td>0.052632</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.077316</td>
+      <td>0.083829</td>
+      <td>0.036718</td>
+      <td>0.008701</td>
+      <td>0.131908</td>
+      <td>0.123207</td>
+      <td>30.757155</td>
+      <td>1024.927705</td>
+      <td>0.846389</td>
+      <td>0.478905</td>
+      <td>...</td>
+      <td>0.077316</td>
+      <td>0.098706</td>
+      <td>0.015656</td>
+      <td>0.271186</td>
+      <td>0.007990</td>
+      <td>0.007812</td>
+      <td>0.015625</td>
+      <td>0.007812</td>
+      <td>0.046512</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.151228</td>
+      <td>0.072111</td>
+      <td>0.158011</td>
+      <td>0.096582</td>
+      <td>0.207955</td>
+      <td>0.111374</td>
+      <td>1.232831</td>
+      <td>4.177296</td>
+      <td>0.963322</td>
+      <td>0.727232</td>
+      <td>...</td>
+      <td>0.151228</td>
+      <td>0.088965</td>
+      <td>0.017798</td>
+      <td>0.250000</td>
+      <td>0.201497</td>
+      <td>0.007812</td>
+      <td>0.562500</td>
+      <td>0.554688</td>
+      <td>0.247119</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.135120</td>
+      <td>0.079146</td>
+      <td>0.124656</td>
+      <td>0.078720</td>
+      <td>0.206045</td>
+      <td>0.127325</td>
+      <td>1.101174</td>
+      <td>4.333713</td>
+      <td>0.971955</td>
+      <td>0.783568</td>
+      <td>...</td>
+      <td>0.135120</td>
+      <td>0.106398</td>
+      <td>0.016931</td>
+      <td>0.266667</td>
+      <td>0.712812</td>
+      <td>0.007812</td>
+      <td>5.484375</td>
+      <td>5.476562</td>
+      <td>0.208274</td>
+      <td>male</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p><strong>Missing Values</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>meanfreq    0
+sd          0
+median      0
+Q25         0
+Q75         0
+IQR         0
+skew        0
+kurt        0
+sp.ent      0
+sfm         0
+mode        0
+centroid    0
+meanfun     0
+minfun      0
+maxfun      0
+meandom     0
+mindom      0
+maxdom      0
+dfrange     0
+modindx     0
+label       0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span>  <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3166, 21)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Data Understanding</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="c1"># df.describe(percentiles=[0, 0.25, 0.5, 0.75,0.80,0.90,0.95, 0.99,1]) # one can also specify the percentiles</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>meanfreq</th>
+      <th>sd</th>
+      <th>median</th>
+      <th>Q25</th>
+      <th>Q75</th>
+      <th>IQR</th>
+      <th>skew</th>
+      <th>kurt</th>
+      <th>sp.ent</th>
+      <th>sfm</th>
+      <th>mode</th>
+      <th>centroid</th>
+      <th>meanfun</th>
+      <th>minfun</th>
+      <th>maxfun</th>
+      <th>meandom</th>
+      <th>mindom</th>
+      <th>maxdom</th>
+      <th>dfrange</th>
+      <th>modindx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+      <td>3166.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.180886</td>
+      <td>0.057130</td>
+      <td>0.185593</td>
+      <td>0.140440</td>
+      <td>0.224748</td>
+      <td>0.084308</td>
+      <td>3.140895</td>
+      <td>36.587139</td>
+      <td>0.895144</td>
+      <td>0.408348</td>
+      <td>0.165248</td>
+      <td>0.180886</td>
+      <td>0.142811</td>
+      <td>0.036801</td>
+      <td>0.258837</td>
+      <td>0.828868</td>
+      <td>0.052631</td>
+      <td>5.044220</td>
+      <td>4.991589</td>
+      <td>0.173751</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.029916</td>
+      <td>0.016656</td>
+      <td>0.036354</td>
+      <td>0.048687</td>
+      <td>0.023636</td>
+      <td>0.042790</td>
+      <td>4.241768</td>
+      <td>134.969236</td>
+      <td>0.044988</td>
+      <td>0.177476</td>
+      <td>0.077212</td>
+      <td>0.029916</td>
+      <td>0.032314</td>
+      <td>0.019225</td>
+      <td>0.030085</td>
+      <td>0.525009</td>
+      <td>0.063301</td>
+      <td>3.517226</td>
+      <td>3.516072</td>
+      <td>0.119484</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.039363</td>
+      <td>0.018363</td>
+      <td>0.010975</td>
+      <td>0.000229</td>
+      <td>0.042946</td>
+      <td>0.014558</td>
+      <td>0.141735</td>
+      <td>2.068455</td>
+      <td>0.738651</td>
+      <td>0.036876</td>
+      <td>0.000000</td>
+      <td>0.039363</td>
+      <td>0.055565</td>
+      <td>0.009775</td>
+      <td>0.103093</td>
+      <td>0.007812</td>
+      <td>0.004883</td>
+      <td>0.007812</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.163649</td>
+      <td>0.041942</td>
+      <td>0.169578</td>
+      <td>0.111086</td>
+      <td>0.208740</td>
+      <td>0.042538</td>
+      <td>1.649353</td>
+      <td>5.666817</td>
+      <td>0.861823</td>
+      <td>0.258126</td>
+      <td>0.118008</td>
+      <td>0.163649</td>
+      <td>0.116990</td>
+      <td>0.018223</td>
+      <td>0.253968</td>
+      <td>0.419640</td>
+      <td>0.007812</td>
+      <td>2.070312</td>
+      <td>2.041016</td>
+      <td>0.099726</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.184814</td>
+      <td>0.059162</td>
+      <td>0.190016</td>
+      <td>0.140255</td>
+      <td>0.225668</td>
+      <td>0.094280</td>
+      <td>2.197623</td>
+      <td>8.327893</td>
+      <td>0.901823</td>
+      <td>0.396472</td>
+      <td>0.186530</td>
+      <td>0.184814</td>
+      <td>0.140585</td>
+      <td>0.046110</td>
+      <td>0.271186</td>
+      <td>0.765625</td>
+      <td>0.023438</td>
+      <td>4.992188</td>
+      <td>4.945312</td>
+      <td>0.139357</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.199118</td>
+      <td>0.067023</td>
+      <td>0.210588</td>
+      <td>0.175931</td>
+      <td>0.243640</td>
+      <td>0.114168</td>
+      <td>2.932527</td>
+      <td>13.649803</td>
+      <td>0.928717</td>
+      <td>0.533795</td>
+      <td>0.221070</td>
+      <td>0.199118</td>
+      <td>0.169605</td>
+      <td>0.047904</td>
+      <td>0.277457</td>
+      <td>1.176824</td>
+      <td>0.070312</td>
+      <td>7.005859</td>
+      <td>6.992188</td>
+      <td>0.209141</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.251124</td>
+      <td>0.115273</td>
+      <td>0.261224</td>
+      <td>0.247347</td>
+      <td>0.273469</td>
+      <td>0.252225</td>
+      <td>34.725453</td>
+      <td>1309.612887</td>
+      <td>0.981997</td>
+      <td>0.842936</td>
+      <td>0.280000</td>
+      <td>0.251124</td>
+      <td>0.237636</td>
+      <td>0.204082</td>
+      <td>0.279114</td>
+      <td>2.957682</td>
+      <td>0.458984</td>
+      <td>21.867188</td>
+      <td>21.843750</td>
+      <td>0.932374</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df.mode()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Distribution of the individual columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span> <span class="c1"># overrides the fiverthirthy eight</span>
+<span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_24_0.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_24_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">subplots</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_25_0.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_25_0.png" />
+</div>
+</div>
+<p><strong>Understanding the label column</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Gender&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>male      50.0
+female    50.0
+Name: label, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_27_1.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_27_1.png" />
+</div>
+</div>
+<p><strong>Further Analysis</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.figure()</span>
+<span class="c1"># sns.pairplot(df[1:10], hue = &#39;label&#39;, height = 5); # will take time to run</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Correlation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot the heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1">#viz the heatmap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_31_0.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_31_0.png" />
+</div>
+</div>
+<p>Task: Impact of multicollinearity on SVM</p>
+</section>
+<section id="model-building">
+<h2>Model Building<a class="headerlink" href="#model-building" title="Permalink to this headline">#</a></h2>
+<section id="data-pre-processing">
+<h3>Data Pre-processing<a class="headerlink" href="#data-pre-processing" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tran-test split</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2532, 20)
+(2532,)
+(634,)
+(634, 20)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="label-encoding">
+<h4>Label Encoding<a class="headerlink" href="#label-encoding" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>male      0.5
+female    0.5
+Name: label, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>female    0.5
+male      0.5
+Name: label, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+
+<span class="c1"># modify the train</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># modify the test </span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="standarization">
+<h4>Standarization<a class="headerlink" href="#standarization" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1"># train data </span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="c1"># test data </span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Converting to a Pandas Dataframe from numpy array</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Visualizing the difference</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">subplots</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_49_0.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_49_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">subplots</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_Module12_30Jan2023-Solved_50_0.png" src="_images/IMP_Vikesh_Module12_30Jan2023-Solved_50_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="build-a-dummy-model">
+<h3>Build a dummy model<a class="headerlink" href="#build-a-dummy-model" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span> <span class="s2">&quot;prior&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit the mdel </span>
+<span class="n">dummy</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># accuracy score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the dummy classifier for train is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummy</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the dummy classifier for test is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummy</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The accuracy of the dummy classifier for train is 50.00%
+The accuracy of the dummy classifier for test is 50.00%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="svm-model">
+<h3>SVM Model<a class="headerlink" href="#svm-model" title="Permalink to this headline">#</a></h3>
+<p><strong>Checking the accuracy for unscaled data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call the model </span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span> <span class="c1">#Default hyperparameters</span>
+
+<span class="c1"># fit the model </span>
+<span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># score the model </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the SVC for train is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the SVC for test is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The accuracy of the SVC for train is 67.18%
+The accuracy of the SVC for test is 68.77%
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Checking the accuracy for scaled data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call the model </span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+
+<span class="c1"># fit the model </span>
+<span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># score the model </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the SVC for train is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy of the SVC for test is </span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The accuracy of the SVC for train is 98.46%
+The accuracy of the SVC for test is 97.79%
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tuning the model</strong></p>
+<ul class="simple">
+<li><p>We can change: Kernels, C values, gamma values</p></li>
+<li><p>within polynomial kernels we can also have change in the degree</p></li>
+</ul>
+<p><strong>GridSearch</strong></p>
+<p><strong>Create a dictionary</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">]</span>
+<span class="n">C_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">degree_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">max_iter_range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># putting it togther</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel_range</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">C_range</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="n">degree_range</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter_range</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;kernel&#39;: [&#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;],
+ &#39;C&#39;: range(1, 10, 2),
+ &#39;degree&#39;: range(1, 5),
+ &#39;max_iter&#39;: [-1, 1, 2]}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Gride Usage</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span> 
+                           <span class="p">,</span><span class="n">param_grid</span> <span class="o">=</span> <span class="n">grid</span>
+                           <span class="p">,</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                           <span class="p">,</span><span class="n">cv</span> <span class="o">=</span> <span class="mi">3</span>
+                           <span class="p">,</span><span class="n">scoring</span> <span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+
+<span class="c1"># fit the model on train data</span>
+<span class="n">grid_result</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># summarize results</span>
+<span class="n">grid_result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_result</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Grid Output</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid_result_df.sort_values(by = &#39;rank_test_score&#39;).head(5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="checking-the-gs-results">
+<h2>Checking the GS results<a class="headerlink" href="#checking-the-gs-results" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_result</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(C=5, degree=1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_result</span><span class="o">.</span><span class="n">best_score_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9834123222748815
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_predictions</span> <span class="o">=</span> <span class="n">grid_result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print classification report </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">grid_predictions</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0       0.97      0.98      0.98       317
+           1       0.98      0.97      0.98       317
+
+    accuracy                           0.98       634
+   macro avg       0.98      0.98      0.98       634
+weighted avg       0.98      0.98      0.98       634
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vikesh<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

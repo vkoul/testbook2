@@ -1,0 +1,2167 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Imperial Business Analytics OH: WK9- Correlation &amp; Regression &#8212; Case Study Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Imperial Business Analytics: WK10- ML and K-NN" href="IMP_Vikesh_OH9_16Jan-23_Conversion_Case%20Study_final.html" />
+    <link rel="prev" title="Imperial Business Analytics- WK8- Estimators" href="IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Case Study Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Case Studies Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH3_28Nov.html">
+   Imperial Business Analytics- 🐍 Python Primer 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Supply_gap_analysis.html">
+   Eda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH4.html">
+   Imperial Business Analytics- 🐍 Python Primer 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH5--Class.html">
+   Imperial Business Analytics- 🐍 Python Primer 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.html">
+   Imperial Business Analytics- WK8- Estimators
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Imperial Business Analytics OH: WK9- Correlation &amp; Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH9_16Jan-23_Conversion_Case%20Study_final.html">
+   Imperial Business Analytics: WK10- ML and K-NN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP-BA-M11-PredictingCancellation_23Jan-Solved.html">
+   Imperial Business Analytics OH: WK11- Classification and Regression Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/IMP_Vikesh_OH8_10Jan-23_Complete.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIMP_Vikesh_OH8_10Jan-23_Complete.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/IMP_Vikesh_OH8_10Jan-23_Complete.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Imperial Business Analytics OH: WK9- Correlation &amp; Regression
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-agenda">
+   OH Agenda 📝
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkblue-ml-overview-font">
+   <font color="darkblue">
+    ML Overview ▶️
+   </font>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ml-classification">
+     ML Classification
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ml-techniques-overview">
+     ML techniques overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#target-and-features">
+     Target and features
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-and-test-split">
+     Train and test split
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear regression
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-steps">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+     steps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-cloth-retailer">
+   Case Study 📓: Cloth Retailer
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-import-modules-and-data-font">
+     <font color="darkred">
+      Import modules and data
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-data-inspection-font">
+     <font color="darkred">
+      Data Inspection
+     </font>
+     🔍📊
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-numerical-inspection-and-summaries-font">
+       <font color="darkred">
+        Numerical inspection and summaries
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-eda-font">
+     <font color="darkred">
+      EDA
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#univariate-analysis">
+       Univariate Analysis
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bivariate-analysis">
+       Bivariate Analysis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-data-prep-for-linear-regression-font">
+     <font color="darkred">
+      Data Prep for Linear Regression
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standardization">
+       Standardization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-model-building-font">
+     <font color="darkred">
+      Model building
+     </font>
+     💥⚡
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-train-data-predictions-font">
+       <font color="darkred">
+        Train Data predictions
+       </font>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-test-data-predictions-font">
+       <font color="darkred">
+        Test Data predictions
+       </font>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-model-coeficeients-font">
+       <font color="darkred">
+        Model Coeficeients
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-decision-making-font">
+     <font color="red">
+      Decision making
+     </font>
+     💲
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-the-model">
+     Export the model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-practise">
+     Further Practise 🤿
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference-material">
+   Reference material 📚
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Imperial Business Analytics OH: WK9- Correlation & Regression</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Imperial Business Analytics OH: WK9- Correlation &amp; Regression
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-agenda">
+   OH Agenda 📝
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-darkblue-ml-overview-font">
+   <font color="darkblue">
+    ML Overview ▶️
+   </font>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ml-classification">
+     ML Classification
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ml-techniques-overview">
+     ML techniques overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#target-and-features">
+     Target and features
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-and-test-split">
+     Train and test split
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear regression
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-steps">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+     steps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-cloth-retailer">
+   Case Study 📓: Cloth Retailer
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-import-modules-and-data-font">
+     <font color="darkred">
+      Import modules and data
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-data-inspection-font">
+     <font color="darkred">
+      Data Inspection
+     </font>
+     🔍📊
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-numerical-inspection-and-summaries-font">
+       <font color="darkred">
+        Numerical inspection and summaries
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-eda-font">
+     <font color="darkred">
+      EDA
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#univariate-analysis">
+       Univariate Analysis
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bivariate-analysis">
+       Bivariate Analysis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-data-prep-for-linear-regression-font">
+     <font color="darkred">
+      Data Prep for Linear Regression
+     </font>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standardization">
+       Standardization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-darkred-model-building-font">
+     <font color="darkred">
+      Model building
+     </font>
+     💥⚡
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-train-data-predictions-font">
+       <font color="darkred">
+        Train Data predictions
+       </font>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-test-data-predictions-font">
+       <font color="darkred">
+        Test Data predictions
+       </font>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#font-color-darkred-model-coeficeients-font">
+       <font color="darkred">
+        Model Coeficeients
+       </font>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-red-decision-making-font">
+     <font color="red">
+      Decision making
+     </font>
+     💲
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-the-model">
+     Export the model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-practise">
+     Further Practise 🤿
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference-material">
+   Reference material 📚
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="alert alert-block alert-success">
+<section class="tex2jax_ignore mathjax_ignore" id="imperial-business-analytics-oh-wk9-correlation-regression">
+<h1>Imperial Business Analytics OH: WK9- Correlation &amp; Regression<a class="headerlink" href="#imperial-business-analytics-oh-wk9-correlation-regression" title="Permalink to this headline">#</a></h1>
+<p>👨‍🏫 <strong>Vikesh K</strong><br />
+📅 <strong>[10-Jan-2023]</strong> ⏰ <strong>7pm UTC</strong><br />
+<strong>Office Hour # 08</strong></p>
+</div><p>💡  <span style='font-family:Georgia'>
+<font color= darkred> <em><strong>Your deepest moments of happiness don’t come from doing easy things; they come from realizing your potential and overcoming your own limiting beliefs about yourself.― Scott H. Young</strong></em>
+</font> 💡</p>
+<div class="alert alert-block alert-success">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="oh-agenda">
+<h1>OH Agenda 📝<a class="headerlink" href="#oh-agenda" title="Permalink to this headline">#</a></h1>
+<p>We will cover:</p>
+<ul class="simple">
+<li><p>ML Overview</p></li>
+<li><p>Retail Case Study</p>
+<ul>
+<li><p>EDA with respect to model building</p></li>
+<li><p>Data Prep</p></li>
+<li><p>Building a Linear regression model</p></li>
+<li><p>Solving the business scenario</p></li>
+</ul>
+</li>
+</ul>
+ </div><h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Imperial-Business-Analytics-OH:-WK9--Correlation-&amp;-Regression" data-toc-modified-id="Imperial-Business-Analytics-OH:-WK9--Correlation-&amp;-Regression-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Imperial Business Analytics OH: WK9- Correlation &amp; Regression</a></span></li><li><span><a href="#OH-Agenda-📝" data-toc-modified-id="OH-Agenda-📝-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>OH Agenda 📝</a></span></li><li><span><a href="#-ML-Overview-▶️-" data-toc-modified-id="-ML-Overview-▶️--3"><span class="toc-item-num">3&nbsp;&nbsp;</span><font color="darkblue"> ML Overview ▶️ </font></a></span><ul class="toc-item"><li><span><a href="#ML-Classification" data-toc-modified-id="ML-Classification-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>ML Classification</a></span></li><li><span><a href="#ML-techniques-overview" data-toc-modified-id="ML-techniques-overview-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>ML techniques overview</a></span></li><li><span><a href="#Target-and-features" data-toc-modified-id="Target-and-features-3.3"><span class="toc-item-num">3.3&nbsp;&nbsp;</span>Target and features</a></span></li><li><span><a href="#Train-and-test-split" data-toc-modified-id="Train-and-test-split-3.4"><span class="toc-item-num">3.4&nbsp;&nbsp;</span>Train and test split</a></span></li><li><span><a href="#Linear-regression" data-toc-modified-id="Linear-regression-3.5"><span class="toc-item-num">3.5&nbsp;&nbsp;</span>Linear regression</a></span></li><li><span><a href="#sklearn-steps" data-toc-modified-id="sklearn-steps-3.6"><span class="toc-item-num">3.6&nbsp;&nbsp;</span><code>sklearn</code> steps</a></span></li></ul></li><li><span><a href="#Case-Study-📓:-Cloth-Retailer" data-toc-modified-id="Case-Study-📓:-Cloth-Retailer-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Case Study 📓: Cloth Retailer</a></span><ul class="toc-item"><li><span><a href="#-Import-modules-and-data-" data-toc-modified-id="-Import-modules-and-data--4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span><font color="darkred"> Import modules and data </font></a></span></li><li><span><a href="#-Data-Inspection🔍📊" data-toc-modified-id="-Data-Inspection🔍📊-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span><font color="darkred"> Data Inspection</font>🔍📊</a></span><ul class="toc-item"><li><span><a href="#-Numerical-inspection-and-summaries-" data-toc-modified-id="-Numerical-inspection-and-summaries--4.2.1"><span class="toc-item-num">4.2.1&nbsp;&nbsp;</span><font color="darkred"> Numerical inspection and summaries </font></a></span></li></ul></li><li><span><a href="#-EDA-" data-toc-modified-id="-EDA--4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span><font color="darkred"> EDA </font></a></span><ul class="toc-item"><li><span><a href="#Univariate-Analysis" data-toc-modified-id="Univariate-Analysis-4.3.1"><span class="toc-item-num">4.3.1&nbsp;&nbsp;</span>Univariate Analysis</a></span></li><li><span><a href="#Bivariate-Analysis" data-toc-modified-id="Bivariate-Analysis-4.3.2"><span class="toc-item-num">4.3.2&nbsp;&nbsp;</span>Bivariate Analysis</a></span></li></ul></li><li><span><a href="#-Data-Prep-for-Linear-Regression-" data-toc-modified-id="-Data-Prep-for-Linear-Regression--4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span><font color="darkred"> Data Prep for Linear Regression </font></a></span><ul class="toc-item"><li><span><a href="#Standardization" data-toc-modified-id="Standardization-4.4.1"><span class="toc-item-num">4.4.1&nbsp;&nbsp;</span>Standardization</a></span></li></ul></li><li><span><a href="#-Model-building--💥⚡" data-toc-modified-id="-Model-building--💥⚡-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span><font color="darkred"> Model building </font> 💥⚡</a></span><ul class="toc-item"><li><span><a href="#-Train-Data-predictions-" data-toc-modified-id="-Train-Data-predictions--4.5.1"><span class="toc-item-num">4.5.1&nbsp;&nbsp;</span><font color="darkred"> Train Data predictions </font></a></span></li><li><span><a href="#-Test-Data-predictions-" data-toc-modified-id="-Test-Data-predictions--4.5.2"><span class="toc-item-num">4.5.2&nbsp;&nbsp;</span><font color="darkred"> Test Data predictions </font></a></span></li><li><span><a href="#-Model-Coeficeients-" data-toc-modified-id="-Model-Coeficeients--4.5.3"><span class="toc-item-num">4.5.3&nbsp;&nbsp;</span><font color="darkred"> Model Coeficeients </font></a></span></li></ul></li><li><span><a href="#-Decision-making-💲" data-toc-modified-id="-Decision-making-💲-4.6"><span class="toc-item-num">4.6&nbsp;&nbsp;</span><font color="red"> Decision making </font>💲</a></span></li><li><span><a href="#Export-the-model" data-toc-modified-id="Export-the-model-4.7"><span class="toc-item-num">4.7&nbsp;&nbsp;</span>Export the model</a></span></li><li><span><a href="#Further-Practise-🤿" data-toc-modified-id="Further-Practise-🤿-4.8"><span class="toc-item-num">4.8&nbsp;&nbsp;</span>Further Practise 🤿</a></span></li></ul></li><li><span><a href="#Reference-material-📚" data-toc-modified-id="Reference-material-📚-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Reference material 📚</a></span></li></ul></div></section>
+<section class="tex2jax_ignore mathjax_ignore" id="font-color-darkblue-ml-overview-font">
+<h1><font color= darkblue> ML Overview ▶️ </font><a class="headerlink" href="#font-color-darkblue-ml-overview-font" title="Permalink to this headline">#</a></h1>
+<section id="ml-classification">
+<h2>ML Classification<a class="headerlink" href="#ml-classification" title="Permalink to this headline">#</a></h2>
+<p><img alt="supervised_and_unsupervised.jpg" src="attachment:supervised_and_unsupervised.jpg" /></p>
+<div class="alert alert-block alert-danger">
+</section>
+<section id="ml-techniques-overview">
+<h2>ML techniques overview<a class="headerlink" href="#ml-techniques-overview" title="Permalink to this headline">#</a></h2>
+<p>The techniques covered in the course</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Analytic Task</p></th>
+<th class="head"><p>Application</p></th>
+<th class="head"><p>ML Algos</p></th>
+<th class="head"><p>Learning Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Prediction</p></td>
+<td><p>Classification</p></td>
+<td><p>Decision trees, Support Vector Machines, kNN</p></td>
+<td><p>Supervised</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prediction</p></td>
+<td><p>Regression</p></td>
+<td><p>Linear regression, Regression trees, SVM, kNN,</p></td>
+<td><p>Supervised</p></td>
+</tr>
+<tr class="row-even"><td><p>Segmentation</p></td>
+<td><p>Clustering</p></td>
+<td><p>K-means, Hierarchical Clustering</p></td>
+<td><p>Unsupervised</p></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-block alert-danger">
+</section>
+<section id="target-and-features">
+<h2>Target and features<a class="headerlink" href="#target-and-features" title="Permalink to this headline">#</a></h2>
+<p><img alt="mldiagram.png" src="attachment:mldiagram.png" /></p>
+<div class="alert alert-block alert-danger">
+</section>
+<section id="train-and-test-split">
+<h2>Train and test split<a class="headerlink" href="#train-and-test-split" title="Permalink to this headline">#</a></h2>
+<p><img alt="train_test_split.png" src="attachment:train_test_split.png" /></p>
+<div class="alert alert-block alert-danger">
+</section>
+<section id="linear-regression">
+<h2>Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Linear regression attempts to model the relationship between two variables by fitting a linear equation to observed data. * One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable. For example, a modeler might want to relate the weights of individuals to their heights using a linear regression model</p></li>
+<li><p>A linear regression line has an equation of the form <span class="math notranslate nohighlight">\(Y = a + bX\)</span>, where X is the explanatory variable and Y is the dependent variable. The slope of the line is b, and a is the intercept (the value of y when x = 0).</p></li>
+</ul>
+</section>
+<section id="sklearn-steps">
+<h2><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> steps<a class="headerlink" href="#sklearn-steps" title="Permalink to this headline">#</a></h2>
+<p>ML in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> steps</p>
+<p>Scikit-learn is the tool for simple machine learning pipelines.</p>
+<p>It’s a single library that unites a whole bunch of models under the common interface:</p>
+<ul class="simple">
+<li><p>Create: <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">sklearn.ModelNameHere(parameters_if_any)</span></code></p></li>
+<li><p>Train: <code class="docutils literal notranslate"><span class="pre">model.fit(X,y)</span></code></p></li>
+<li><p>Predict: <code class="docutils literal notranslate"><span class="pre">model.predict(X_test)</span></code></p></li>
+</ul>
+<div class="alert alert-block alert-success">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-cloth-retailer">
+<h1>Case Study 📓: Cloth Retailer<a class="headerlink" href="#case-study-cloth-retailer" title="Permalink to this headline">#</a></h1>
+<p><strong><a class="reference external" href="https://docs.google.com/document/d/1BK9u8xFA9g8VMVZBLP1kCl6AqRp-Ue91y8p4mrWaKUo/edit?usp=sharing">Case Study Details</a></strong></p>
+<p><strong>Can you help the Sales manager to decide amongst the four scenarios?</strong></p>
+<p><strong>You would need to use linear regression to establish the relationship between Price, advertisement, promotion, and units sold.
+Essentially, you need to estimate the coefficient values of the equation that will establish the relationship between independent variables and dependent variables (unit sales)</strong></p>
+<p><img alt="image-2.png" src="attachment:image-2.png" /></p>
+</div><p><img alt="scenarios.png" src="attachment:scenarios.png" /></p>
+<section id="font-color-darkred-import-modules-and-data-font">
+<h2><font color= darkred> Import modules and data </font><a class="headerlink" href="#font-color-darkred-import-modules-and-data-font" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data manipulation</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># data viz</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="c1"># plt.style.use(&quot;fivethirtyeight&quot;) # styling the charts</span>
+
+<span class="c1"># data prep</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># ML algos</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># metrics </span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loading the data </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/vkoul/data/main/misc/tshirt_sales.csv&quot;</span><span class="p">)</span>
+<span class="n">scenario</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/vkoul/data/main/misc/business_scenario.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scenario.columns</span>
+<span class="c1"># df.columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="font-color-darkred-data-inspection-font">
+<h2><font color= darkred> Data Inspection</font>🔍📊<a class="headerlink" href="#font-color-darkred-data-inspection-font" title="Permalink to this headline">#</a></h2>
+<section id="font-color-darkred-numerical-inspection-and-summaries-font">
+<h3><font color= darkred> Numerical inspection and summaries </font><a class="headerlink" href="#font-color-darkred-numerical-inspection-and-summaries-font" title="Permalink to this headline">#</a></h3>
+<p><strong>Data Inspect</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 24 entries, 0 to 23
+Data columns (total 6 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   Year          24 non-null     int64  
+ 1   Month         24 non-null     int64  
+ 2   units_sold    24 non-null     int64  
+ 3   dollar_price  24 non-null     float64
+ 4   advertisment  24 non-null     float64
+ 5   promotions    24 non-null     float64
+dtypes: float64(3), int64(3)
+memory usage: 1.2 KB
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>units_sold</th>
+      <th>dollar_price</th>
+      <th>advertisment</th>
+      <th>promotions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019</td>
+      <td>1</td>
+      <td>73959</td>
+      <td>8.75</td>
+      <td>50.04</td>
+      <td>61.13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019</td>
+      <td>2</td>
+      <td>71544</td>
+      <td>8.99</td>
+      <td>50.74</td>
+      <td>60.19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019</td>
+      <td>3</td>
+      <td>78587</td>
+      <td>7.50</td>
+      <td>50.14</td>
+      <td>59.16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019</td>
+      <td>4</td>
+      <td>80364</td>
+      <td>7.25</td>
+      <td>50.27</td>
+      <td>60.38</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019</td>
+      <td>5</td>
+      <td>78771</td>
+      <td>7.40</td>
+      <td>51.25</td>
+      <td>59.71</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Missing values check</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year            0
+Month           0
+units_sold      0
+dollar_price    0
+advertisment    0
+promotions      0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Select only the key columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;units_sold&#39;</span><span class="p">,</span> <span class="s1">&#39;dollar_price&#39;</span><span class="p">,</span> <span class="s1">&#39;advertisment&#39;</span><span class="p">,</span><span class="s1">&#39;promotions&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;units_sold&#39;, &#39;dollar_price&#39;, &#39;advertisment&#39;, &#39;promotions&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Numerical summary of the key columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>units_sold</th>
+      <th>dollar_price</th>
+      <th>advertisment</th>
+      <th>promotions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>24.00</td>
+      <td>24.00</td>
+      <td>24.00</td>
+      <td>24.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>74258.29</td>
+      <td>8.13</td>
+      <td>50.15</td>
+      <td>59.88</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3164.39</td>
+      <td>0.51</td>
+      <td>1.28</td>
+      <td>0.68</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>69003.00</td>
+      <td>7.25</td>
+      <td>48.00</td>
+      <td>58.00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>71959.50</td>
+      <td>7.90</td>
+      <td>49.40</td>
+      <td>59.64</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>74103.00</td>
+      <td>8.15</td>
+      <td>50.12</td>
+      <td>59.90</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>76354.50</td>
+      <td>8.43</td>
+      <td>50.77</td>
+      <td>60.24</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>80364.00</td>
+      <td>8.99</td>
+      <td>54.00</td>
+      <td>61.13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="font-color-darkred-eda-font">
+<h2><font color= darkred> EDA </font><a class="headerlink" href="#font-color-darkred-eda-font" title="Permalink to this headline">#</a></h2>
+<section id="univariate-analysis">
+<h3>Univariate Analysis<a class="headerlink" href="#univariate-analysis" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.hist</span></code> function calls matplotlib.pyplot.hist(), on each series in the DataFrame, resulting in one histogram per column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the histograms of the key columns</span>
+<span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">grid</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span> <span class="s1">&#39;darkred&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_33_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df[&#39;units_sold&#39;].plot.kde(figsize = (10, 5));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_35_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_35_0.png" />
+</div>
+</div>
+</section>
+<section id="bivariate-analysis">
+<h3>Bivariate Analysis<a class="headerlink" href="#bivariate-analysis" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sns.pairplot(df[key_columns]);</span>
+<span class="c1"># sns.pairplot(df[key_columns], kind =&#39;reg&#39;);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">],</span> <span class="n">diag_kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_37_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_37_0.png" />
+</div>
+</div>
+<p><strong>Correlation between values</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># basic one</span>
+<span class="c1"># sns.heatmap(corr, annot = True);</span>
+
+<span class="c1"># sns.heatmap(corr, annot = True).set_title(&#39;Correlation Heatmap&#39;, fontdict={&#39;fontsize&#39;:13}, pad=12); # ADD TITLE</span>
+
+<span class="c1"># sns.heatmap(corr, annot = True, cmap=&#39;BrBG&#39;); # DIVERGING COLOR SCHEME</span>
+
+<span class="c1"># tri_corr = np.triu(np.ones_like(corr, dtype=np.bool)) # returns upper triangle of an array.</span>
+<span class="c1"># sns.heatmap(corr, annot = True, mask = tri_corr); # TRIANGLE VIEW</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x800 with 0 Axes&gt;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x800 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Visualise Linear relationship between variables</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sns.lmplot(x = &quot;dollar_price&quot;, y = &quot;units_sold&quot;, data = df,  order = 1, markers= [&#39;v&#39;], ci = False);</span>
+<span class="c1"># sns.lmplot(x = &quot;advertisment&quot;, y = &quot;units_sold&quot;, data = df, ci = False, order = 1, markers= [&#39;o&#39;]);</span>
+<span class="c1"># sns.lmplot(x = &quot;promotions&quot;, y = &quot;units_sold&quot;, data = df, ci = False, order = 1, markers= [&#39;x&#39;]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Plotting the linecharts</span>
+
+<span class="c1"># # plot size</span>
+<span class="c1"># plt.figure(figsize = (10,5))</span>
+
+<span class="c1"># # line chart</span>
+<span class="c1"># df[&quot;units_sold&quot;].plot(kind = &quot;line&quot;, label = &quot;actual_units&quot;, marker = &quot;o&quot;);</span>
+
+
+<span class="c1"># # labels</span>
+<span class="c1"># plt.ylabel(&quot;Units sold&quot;)</span>
+<span class="c1"># plt.title(&quot;Units sold over the period&quot;)</span>
+
+<span class="c1"># # show</span>
+<span class="c1"># plt.show();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="font-color-darkred-data-prep-for-linear-regression-font">
+<h2><font color= darkred> Data Prep for Linear Regression </font><a class="headerlink" href="#font-color-darkred-data-prep-for-linear-regression-font" title="Permalink to this headline">#</a></h2>
+<p><img alt="featuresMatrixTargetVector.png" src="attachment:featuresMatrixTargetVector.png" /></p>
+<div class="alert alert-block alert-danger"> 
+<p><strong>Specifiying a particular <code class="docutils literal notranslate"><span class="pre">random_state</span></code> will ensure that our data split happens in the same manner</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># splitting the data </span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">key_columns</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;units_sold&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;units_sold&quot;</span><span class="p">]</span>
+
+
+<span class="c1"># # doing train test split</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x_train: &quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x_test: &quot;</span><span class="p">,</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_train: &quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_test: &quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x_train:  (19, 3)
+x_test:  (5, 3)
+
+
+y_train:  (19,)
+y_test:  (5,)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dollar_price</th>
+      <th>advertisment</th>
+      <th>promotions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>8.40</td>
+      <td>50.87</td>
+      <td>60.14</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>8.30</td>
+      <td>49.46</td>
+      <td>60.06</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>8.75</td>
+      <td>50.04</td>
+      <td>61.13</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>7.40</td>
+      <td>49.24</td>
+      <td>60.40</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.50</td>
+      <td>50.14</td>
+      <td>59.16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6     74885
+15    74247
+0     73959
+13    78542
+2     78587
+Name: units_sold, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="standardization">
+<h3>Standardization<a class="headerlink" href="#standardization" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_49_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_49_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_50_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_50_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.</span> <span class="n">preprocessing</span> <span class="kn">import</span> <span class="nn">StandardScaler</span> 
+
+<span class="c1"># fit the module on your train dataset so it learns the pattern. The scaler gets loaded with the necessary value</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+
+<span class="c1"># use the scaler&#39;s transform feature now to convert the new dataset</span>
+<span class="n">x_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">x_train_scaled</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train_scaled</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_53_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_53_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train_scaled</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_54_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_54_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="font-color-darkred-model-building-font">
+<h2><font color= darkred> Model building </font> 💥⚡<a class="headerlink" href="#font-color-darkred-model-building-font" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>74258.29166666667
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Normal data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call the model </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># fit the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># # calculate the score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+
+<span class="c1"># make the predictions on train data</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># accuracy metrics</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">squared</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)))</span> <span class="c1"># the 2f means that its is for 2 decimal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2: 0.87
+RMSE: 1144.65
+MAE: 809.04
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Scaled Data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call the model </span>
+<span class="n">model2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># fit the model</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># # calculate the score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+
+<span class="c1"># make the predictions on train data</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_train_scaled</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># accuracy metrics</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">squared</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)))</span> <span class="c1"># the 2f means that its is for 2 decimal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2: 0.87
+RMSE: 1144.65
+MAE: 809.04
+</pre></div>
+</div>
+</div>
+</div>
+<section id="font-color-darkred-train-data-predictions-font">
+<h3><font color= darkred> Train Data predictions </font><a class="headerlink" href="#font-color-darkred-train-data-predictions-font" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># combine the actual data and predictions</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;actual&quot;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span> 
+                       <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">})</span>
+
+<span class="c1"># sort the index</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+<span class="c1"># new output</span>
+<span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>actual</th>
+      <th>predictions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>73959</td>
+      <td>73447.8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>71544</td>
+      <td>70763.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>78587</td>
+      <td>76394.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>80364</td>
+      <td>80170.6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>78771</td>
+      <td>78657.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add prediction back to the data and visualise</span>
+
+<span class="c1">#plot size</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># line chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;actual&quot;</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;predictions&quot;</span><span class="p">)</span>
+
+<span class="c1"># labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Units sold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Units sold over the period: Train Data&quot;</span><span class="p">)</span>
+
+<span class="c1"># show labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># show</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_63_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_63_0.png" />
+</div>
+</div>
+</section>
+<section id="font-color-darkred-test-data-predictions-font">
+<h3><font color= darkred> Test Data predictions </font><a class="headerlink" href="#font-color-darkred-test-data-predictions-font" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predicting for test data </span>
+
+<span class="n">test_predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># calculate the score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2 of test: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+
+
+<span class="c1"># accuracy metrics</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE of test: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_predictions</span><span class="p">,</span> <span class="n">squared</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE of test: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_predictions</span><span class="p">)))</span> <span class="c1"># the 2f means that its is for 2 decimal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 of test: 0.74
+RMSE of test: 1330.18
+MAE of test: 1033.68
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creating a df with test data and predictions</span>
+
+<span class="n">test_output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;actual&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">,</span> 
+                           <span class="s2">&quot;test_predictions&quot;</span><span class="p">:</span> <span class="n">test_predictions</span><span class="p">})</span>
+
+<span class="c1"># sorting index</span>
+<span class="n">test_output</span> <span class="o">=</span> <span class="n">test_output</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">test_output</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>actual</th>
+      <th>test_predictions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>76659</td>
+      <td>78027.3</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>72543</td>
+      <td>75067.5</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>76253</td>
+      <td>76676.5</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>72582</td>
+      <td>71984.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>69701</td>
+      <td>69446.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add prediction back to the data and visualise</span>
+
+<span class="c1"># plot size</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># line chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_output</span><span class="p">[</span><span class="s2">&quot;actual&quot;</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;actual&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_output</span><span class="p">[</span><span class="s2">&quot;test_predictions&quot;</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;predictions&quot;</span><span class="p">)</span>
+
+<span class="c1"># labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Units sold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Units sold over the period: Test Data&quot;</span><span class="p">)</span>
+
+<span class="c1"># show labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># show</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_67_0.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_67_0.png" />
+</div>
+</div>
+</section>
+<section id="font-color-darkred-model-coeficeients-font">
+<h3><font color= darkred> Model Coeficeients </font><a class="headerlink" href="#font-color-darkred-model-coeficeients-font" title="Permalink to this headline">#</a></h3>
+<p>A linear regression model is of the type: <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_2 \)</span> ; where <span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept and other <span class="math notranslate nohighlight">\(\beta\)</span> are the coefficient of the columns.</p>
+<p>The linear regression model will help us find the value of these <span class="math notranslate nohighlight">\(\beta\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing the results after rounding off</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The intercept is:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The co-efficients are:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The intercept is: -27846.9
+The co-efficients are: [-5357.    598.5  1933.9]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Putting the above information in a data-frame which is readable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">x_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+<span class="n">coeffs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>dollar_price</th>
+      <td>-5357.0</td>
+    </tr>
+    <tr>
+      <th>advertisment</th>
+      <td>598.5</td>
+    </tr>
+    <tr>
+      <th>promotions</th>
+      <td>1933.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="_images/IMP_Vikesh_OH8_10Jan-23_Complete_72_1.png" src="_images/IMP_Vikesh_OH8_10Jan-23_Complete_72_1.png" />
+</div>
+</div>
+<p>Hence our equation will be:</p>
+<p><strong><span class="math notranslate nohighlight">\( units sold = -27846.9 + -5357.0  \cdot dollar price + 598.5 \cdot advertisment +  1933.9 \cdot promotions\)</span></strong></p>
+</section>
+</section>
+<section id="font-color-red-decision-making-font">
+<h2><font color= red> Decision making </font>💲<a class="headerlink" href="#font-color-red-decision-making-font" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario</span>
+<span class="n">scenario</span><span class="p">[[</span><span class="s1">&#39;dollar_price&#39;</span><span class="p">,</span> <span class="s1">&#39;advertisment&#39;</span><span class="p">,</span><span class="s1">&#39;promotions&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dollar_price</th>
+      <th>advertisment</th>
+      <th>promotions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>50</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>45</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># making the predictions</span>
+<span class="n">projections</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">scenario</span><span class="p">[[</span><span class="s1">&#39;dollar_price&#39;</span><span class="p">,</span> <span class="s1">&#39;advertisment&#39;</span><span class="p">,</span><span class="s1">&#39;promotions&#39;</span><span class="p">]]),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">projections</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([66476., 62594., 60646., 39218.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adding the predictions to the data </span>
+<span class="n">scenario</span><span class="p">[</span><span class="s2">&quot;projections&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">projections</span>
+<span class="n">scenario</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;background-color&#39;</span><span class="p">:</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;border-color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="n">subset</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;projections&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_8fa9b_row0_col5, #T_8fa9b_row1_col5, #T_8fa9b_row2_col5, #T_8fa9b_row3_col5 {
+  background-color: darkred;
+  color: white;
+  border-color: white;
+}
+</style>
+<table id="T_8fa9b">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_8fa9b_level0_col0" class="col_heading level0 col0" >business_context</th>
+      <th id="T_8fa9b_level0_col1" class="col_heading level0 col1" >scenario</th>
+      <th id="T_8fa9b_level0_col2" class="col_heading level0 col2" >dollar_price</th>
+      <th id="T_8fa9b_level0_col3" class="col_heading level0 col3" >advertisment</th>
+      <th id="T_8fa9b_level0_col4" class="col_heading level0 col4" >promotions</th>
+      <th id="T_8fa9b_level0_col5" class="col_heading level0 col5" >projections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_8fa9b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8fa9b_row0_col0" class="data row0 col0" >High price; high marketing</td>
+      <td id="T_8fa9b_row0_col1" class="data row0 col1" >Scenario 1</td>
+      <td id="T_8fa9b_row0_col2" class="data row0 col2" >10</td>
+      <td id="T_8fa9b_row0_col3" class="data row0 col3" >50</td>
+      <td id="T_8fa9b_row0_col4" class="data row0 col4" >61</td>
+      <td id="T_8fa9b_row0_col5" class="data row0 col5" >66476.000000</td>
+    </tr>
+    <tr>
+      <th id="T_8fa9b_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_8fa9b_row1_col0" class="data row1 col0" >Medium price; medium marketing</td>
+      <td id="T_8fa9b_row1_col1" class="data row1 col1" >Scenario 2</td>
+      <td id="T_8fa9b_row1_col2" class="data row1 col2" >8</td>
+      <td id="T_8fa9b_row1_col3" class="data row1 col3" >45</td>
+      <td id="T_8fa9b_row1_col4" class="data row1 col4" >55</td>
+      <td id="T_8fa9b_row1_col5" class="data row1 col5" >62594.000000</td>
+    </tr>
+    <tr>
+      <th id="T_8fa9b_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_8fa9b_row2_col0" class="data row2 col0" >Low price; low marketing</td>
+      <td id="T_8fa9b_row2_col1" class="data row2 col1" >Scenario 3</td>
+      <td id="T_8fa9b_row2_col2" class="data row2 col2" >6</td>
+      <td id="T_8fa9b_row2_col3" class="data row2 col3" >40</td>
+      <td id="T_8fa9b_row2_col4" class="data row2 col4" >50</td>
+      <td id="T_8fa9b_row2_col5" class="data row2 col5" >60646.000000</td>
+    </tr>
+    <tr>
+      <th id="T_8fa9b_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_8fa9b_row3_col0" class="data row3 col0" >High price; low marketing</td>
+      <td id="T_8fa9b_row3_col1" class="data row3 col1" >Scenario 4</td>
+      <td id="T_8fa9b_row3_col2" class="data row3 col2" >10</td>
+      <td id="T_8fa9b_row3_col3" class="data row3 col3" >40</td>
+      <td id="T_8fa9b_row3_col4" class="data row3 col4" >50</td>
+      <td id="T_8fa9b_row3_col5" class="data row3 col5" >39218.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter out the final scenario</span>
+<span class="n">scenario</span><span class="p">[</span><span class="n">scenario</span><span class="p">[</span><span class="s2">&quot;projections&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">scenario</span><span class="p">[</span><span class="s2">&quot;projections&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>business_context</th>
+      <th>scenario</th>
+      <th>dollar_price</th>
+      <th>advertisment</th>
+      <th>promotions</th>
+      <th>projections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>High price; high marketing</td>
+      <td>Scenario 1</td>
+      <td>10</td>
+      <td>50</td>
+      <td>61</td>
+      <td>66476.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Another way to highlight in Pandas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;background:darkorange&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="s2">&quot;Scenario 1&quot;</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">scenario</span><span class="o">.</span><span class="n">scenario</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_4e3b3_row0_col0, #T_4e3b3_row0_col1, #T_4e3b3_row0_col2, #T_4e3b3_row0_col3, #T_4e3b3_row0_col4, #T_4e3b3_row0_col5 {
+  background: darkorange;
+}
+</style>
+<table id="T_4e3b3">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_4e3b3_level0_col0" class="col_heading level0 col0" >business_context</th>
+      <th id="T_4e3b3_level0_col1" class="col_heading level0 col1" >scenario</th>
+      <th id="T_4e3b3_level0_col2" class="col_heading level0 col2" >dollar_price</th>
+      <th id="T_4e3b3_level0_col3" class="col_heading level0 col3" >advertisment</th>
+      <th id="T_4e3b3_level0_col4" class="col_heading level0 col4" >promotions</th>
+      <th id="T_4e3b3_level0_col5" class="col_heading level0 col5" >projections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_4e3b3_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_4e3b3_row0_col0" class="data row0 col0" >High price; high marketing</td>
+      <td id="T_4e3b3_row0_col1" class="data row0 col1" >Scenario 1</td>
+      <td id="T_4e3b3_row0_col2" class="data row0 col2" >10</td>
+      <td id="T_4e3b3_row0_col3" class="data row0 col3" >50</td>
+      <td id="T_4e3b3_row0_col4" class="data row0 col4" >61</td>
+      <td id="T_4e3b3_row0_col5" class="data row0 col5" >66476.000000</td>
+    </tr>
+    <tr>
+      <th id="T_4e3b3_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_4e3b3_row1_col0" class="data row1 col0" >Medium price; medium marketing</td>
+      <td id="T_4e3b3_row1_col1" class="data row1 col1" >Scenario 2</td>
+      <td id="T_4e3b3_row1_col2" class="data row1 col2" >8</td>
+      <td id="T_4e3b3_row1_col3" class="data row1 col3" >45</td>
+      <td id="T_4e3b3_row1_col4" class="data row1 col4" >55</td>
+      <td id="T_4e3b3_row1_col5" class="data row1 col5" >62594.000000</td>
+    </tr>
+    <tr>
+      <th id="T_4e3b3_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_4e3b3_row2_col0" class="data row2 col0" >Low price; low marketing</td>
+      <td id="T_4e3b3_row2_col1" class="data row2 col1" >Scenario 3</td>
+      <td id="T_4e3b3_row2_col2" class="data row2 col2" >6</td>
+      <td id="T_4e3b3_row2_col3" class="data row2 col3" >40</td>
+      <td id="T_4e3b3_row2_col4" class="data row2 col4" >50</td>
+      <td id="T_4e3b3_row2_col5" class="data row2 col5" >60646.000000</td>
+    </tr>
+    <tr>
+      <th id="T_4e3b3_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_4e3b3_row3_col0" class="data row3 col0" >High price; low marketing</td>
+      <td id="T_4e3b3_row3_col1" class="data row3 col1" >Scenario 4</td>
+      <td id="T_4e3b3_row3_col2" class="data row3 col2" >10</td>
+      <td id="T_4e3b3_row3_col3" class="data row3 col3" >40</td>
+      <td id="T_4e3b3_row3_col4" class="data row3 col4" >50</td>
+      <td id="T_4e3b3_row3_col5" class="data row3 col5" >39218.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="export-the-model">
+<h2>Export the model<a class="headerlink" href="#export-the-model" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;lm_model_prediction.sav&#39;</span> <span class="c1"># name of the file </span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span> <span class="c1"># exporting the file</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="mf">203224.34</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted units to sell: </span><span class="si">{</span><span class="n">pred</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted units to sell: 203,224 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-danger">
+</section>
+<section id="further-practise">
+<h2>Further Practise 🤿<a class="headerlink" href="#further-practise" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Build a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html">KNeighborsRegressor</a> model with the same steps as above</p></li>
+<li><p>Standardize the values using a StandardScaler() and see if it makes an impact on the predictions</p></li>
+<li><p>Remember the Spotify dataset covered in earlier OH. Can you build a model for predicting popularity using ML.</p></li>
+</ul>
+<div class="alert alert-block alert-success">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-material">
+<h1>Reference material 📚<a class="headerlink" href="#reference-material" title="Permalink to this headline">#</a></h1>
+<p><strong>Linear Regression Theory</strong>📚</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Linear Regression Overview</a>📓</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=zPG4NjIkCjc&amp;t=67s">An Introduction to Linear Regression Analysis</a>📺</p></li>
+</ul>
+<p><strong>Linear Regression Practical</strong> 🙇</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/supervised_learning.html">Regression models in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.score">Linear Regression in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/linear-regression-in-python/">Explanation of linear regresion in python</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/tutorial/basic/tutorial.html">Intro to ML in scikit-learn</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/tutorial/statistical_inference/supervised_learning.html">ML Algos overview</a></p></li>
+</ul>
+<p><strong>Data Vis</strong> 📊</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/regression.html">Visualising Regression Models</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/visualizing-data-with-pair-plots-in-python-f228cf529166">Visualizing Data with Pairs Plots in Python</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/&#64;szabo.bibor/how-to-create-a-seaborn-correlation-heatmap-in-python-834c0686b88e">How to Create a Seaborn Correlation Heatmap in Python?</a></p></li>
+</ul>
+</div></section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Imperial Business Analytics- WK8- Estimators</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="IMP_Vikesh_OH9_16Jan-23_Conversion_Case%20Study_final.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Imperial Business Analytics: WK10- ML and K-NN</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vikesh<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

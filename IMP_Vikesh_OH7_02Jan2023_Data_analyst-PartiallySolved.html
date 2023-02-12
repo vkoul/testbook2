@@ -1,0 +1,1552 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Imperial Business Analytics- WK8- Estimators &#8212; Case Study Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Imperial Business Analytics OH: WK9- Correlation &amp; Regression" href="IMP_Vikesh_OH8_10Jan-23_Complete.html" />
+    <link rel="prev" title="Imperial Business Analytics- 🐍 Python Primer 3" href="IMP_BA_OH5--Class.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Case Study Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Case Studies Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH3_28Nov.html">
+   Imperial Business Analytics- 🐍 Python Primer 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Supply_gap_analysis.html">
+   Eda
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH4.html">
+   Imperial Business Analytics- 🐍 Python Primer 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_BA_OH5--Class.html">
+   Imperial Business Analytics- 🐍 Python Primer 3
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Imperial Business Analytics- WK8- Estimators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH8_10Jan-23_Complete.html">
+   Imperial Business Analytics OH: WK9- Correlation &amp; Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP_Vikesh_OH9_16Jan-23_Conversion_Case%20Study_final.html">
+   Imperial Business Analytics: WK10- ML and K-NN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IMP-BA-M11-PredictingCancellation_23Jan-Solved.html">
+   Imperial Business Analytics OH: WK11- Classification and Regression Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Imperial Business Analytics- WK8- Estimators
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-agenda">
+   OH Agenda 📝
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   ▶️ Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-instacart">
+   Case Study 📓 - Instacart
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note">
+     Note: ✨
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-modules">
+     Loading the modules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-the-data">
+     Importing the data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises 💥⚡
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#importing-data-in-the-correct-way">
+       Importing data in the correct way
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-cleaning">
+     Data Cleaning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-the-delivery-time-across-regions">
+     Exploring the delivery time across regions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-the-deliveries-in-sf">
+       Plot the deliveries in
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sf
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-the-deliveries-in-all-regions">
+       Plot the deliveries in all regions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Imperial Business Analytics- WK8- Estimators</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Imperial Business Analytics- WK8- Estimators
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-agenda">
+   OH Agenda 📝
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   ▶️ Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-instacart">
+   Case Study 📓 - Instacart
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note">
+     Note: ✨
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-modules">
+     Loading the modules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-the-data">
+     Importing the data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises 💥⚡
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#importing-data-in-the-correct-way">
+       Importing data in the correct way
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-cleaning">
+     Data Cleaning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-the-delivery-time-across-regions">
+     Exploring the delivery time across regions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-the-deliveries-in-sf">
+       Plot the deliveries in
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sf
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-the-deliveries-in-all-regions">
+       Plot the deliveries in all regions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="alert alert-block alert-success">
+<section class="tex2jax_ignore mathjax_ignore" id="imperial-business-analytics-wk8-estimators">
+<h1>Imperial Business Analytics- WK8- Estimators<a class="headerlink" href="#imperial-business-analytics-wk8-estimators" title="Permalink to this headline">#</a></h1>
+<p>👨‍🏫 <strong>Vikesh K</strong><br />
+📅 <strong>[02-Jan-2023]</strong> ⏰ <strong>7pm UTC</strong><br />
+#️⃣ <strong>Office Hour # 07</strong></p>
+</div><p>💡  <span style='font-family:Georgia'>
+<font color= darkred> <em><strong>It doesn’t get easier, you get better- Unknown</strong></em>
+</font> 💡</p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Imperial-Business-Analytics--WK8--Estimators" data-toc-modified-id="Imperial-Business-Analytics--WK8--Estimators-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Imperial Business Analytics- WK8- Estimators</a></span></li><li><span><a href="#OH-Agenda-📝" data-toc-modified-id="OH-Agenda-📝-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>OH Agenda 📝</a></span></li><li><span><a href="#▶️-Theory" data-toc-modified-id="▶️-Theory-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>▶️ Theory</a></span></li><li><span><a href="#Case-Study-📓---Instacart" data-toc-modified-id="Case-Study-📓---Instacart-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Case Study 📓 - Instacart</a></span><ul class="toc-item"><li><span><a href="#Note:-✨" data-toc-modified-id="Note:-✨-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Note: ✨</a></span></li><li><span><a href="#Loading-the-modules" data-toc-modified-id="Loading-the-modules-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Loading the modules</a></span></li><li><span><a href="#Importing-the-data" data-toc-modified-id="Importing-the-data-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Importing the data</a></span></li><li><span><a href="#Exercises-💥⚡" data-toc-modified-id="Exercises-💥⚡-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Exercises 💥⚡</a></span><ul class="toc-item"><li><span><a href="#Importing-data-in-the-correct-way" data-toc-modified-id="Importing-data-in-the-correct-way-4.4.1"><span class="toc-item-num">4.4.1&nbsp;&nbsp;</span>Importing data in the correct way</a></span></li></ul></li><li><span><a href="#Data-Cleaning" data-toc-modified-id="Data-Cleaning-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Data Cleaning</a></span></li><li><span><a href="#Exploring-the-delivery-time-across-regions" data-toc-modified-id="Exploring-the-delivery-time-across-regions-4.6"><span class="toc-item-num">4.6&nbsp;&nbsp;</span>Exploring the delivery time across regions</a></span><ul class="toc-item"><li><span><a href="#Plot-the-deliveries-in-sf" data-toc-modified-id="Plot-the-deliveries-in-sf-4.6.1"><span class="toc-item-num">4.6.1&nbsp;&nbsp;</span>Plot the deliveries in <code>sf</code></a></span></li><li><span><a href="#Plot-the-deliveries-in-all-regions" data-toc-modified-id="Plot-the-deliveries-in-all-regions-4.6.2"><span class="toc-item-num">4.6.2&nbsp;&nbsp;</span>Plot the deliveries in all regions</a></span></li></ul></li></ul></li></ul></div><div class="alert alert-block alert-success">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="oh-agenda">
+<h1>OH Agenda 📝<a class="headerlink" href="#oh-agenda" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><strong>Instacart case study</strong> : Analysing an open ended data analytics problem</p></li>
+<li><p>Understanding the time series in pandas</p></li>
+<li><p>Coding exercises 💥⚡</p></li>
+</ul>
+<div/><div class="alert alert-block alert-danger">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="theory">
+<h1>▶️ Theory<a class="headerlink" href="#theory" title="Permalink to this headline">#</a></h1>
+<p><strong>Data Science reality</strong></p>
+<p><img alt="data_science_reality.png" src="attachment:data_science_reality.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-instacart">
+<h1>Case Study 📓 - Instacart<a class="headerlink" href="#case-study-instacart" title="Permalink to this headline">#</a></h1>
+<p><img alt="instacart_logo.png" src="attachment:instacart_logo.png" /></p>
+<div class="alert alert-block alert-info">
+<section id="note">
+<h2>Note: ✨<a class="headerlink" href="#note" title="Permalink to this headline">#</a></h2>
+<p>A <strong>take-home assignment</strong> is a coding task given to candidates to complete on their own time. Candidates are typically given a day to several days to complete a take-home. It is done to understand a candidate’s problem solving approach and how they structure a business problem, solve it using data and give back business recommendations.</p>
+<p>In this OH, we will analyze a problem posed by <a class="reference external" href="https://www.instacart.com/"><strong>Instacart</strong></a> for its Data Analyst position. You can download the challenge from <a class="reference external" href="https://github.com/vkoul/data/blob/main/misc/Instacart_Data_Analyst_Challenge.xlsx">here</a> and refer to OH recording to understand the approach.</p>
+<p>The next step was to do data analysis using Python and this is where this jupyter notebook comes in</p>
+<div/><p>💡 <strong>We will learn about the data used by delivery companies and how they analyze it to solve their business problems</strong></p>
+</section>
+<section id="loading-the-modules">
+<h2>Loading the modules<a class="headerlink" href="#loading-the-modules" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="c1"># make sure the zip file is saved in the working directory</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\vkoul\\testbook&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="importing-the-data">
+<h2>Importing the data<a class="headerlink" href="#importing-the-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/vkoul/data/main/misc/instacart.csv&#39;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">orig_df</span> <span class="o">=</span> <span class="n">df</span> <span class="c1"># create a copy of the original data-frame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14957, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 14957 entries, 0 to 14956
+Data columns (total 5 columns):
+ #   Column                   Non-Null Count  Dtype 
+---  ------                   --------------  ----- 
+ 0   order_delivery_time      14957 non-null  object
+ 1   order_id                 14957 non-null  int64 
+ 2   customer_order_rating    14957 non-null  int64 
+ 3   type_of_issue _reported  1087 non-null   object
+ 4   region                   14957 non-null  object
+dtypes: int64(2), object(3)
+memory usage: 584.4+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_delivery_time</th>
+      <th>order_id</th>
+      <th>customer_order_rating</th>
+      <th>type_of_issue _reported</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-06-02 04:23:16 UTC</td>
+      <td>233599337</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-06-02 03:57:50 UTC</td>
+      <td>233599376</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-06-02 02:52:38 UTC</td>
+      <td>233599328</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-06-02 02:52:04 UTC</td>
+      <td>233599070</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-06-02 02:41:43 UTC</td>
+      <td>233599100</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="exercises">
+<h2>Exercises 💥⚡<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<p>❓<strong>Are there any missing values in the dataset?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_delivery_time            0
+order_id                       0
+customer_order_rating          0
+type_of_issue _reported    13870
+region                         0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>❓<strong>Are there any duplicates in the dataset? Please treat them</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Cleaning column names</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">,</span> <span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="s1">&#39;customer_order_rating&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;type_of_issue_reported&#39;</span><span class="p">,</span> <span class="s1">&#39;region&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;order_delivery_time&#39;, &#39;order_id&#39;, &#39;customer_order_rating&#39;,
+       &#39;type_of_issue_reported&#39;, &#39;region&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Duplicates at <code class="docutils literal notranslate"><span class="pre">Order</span> <span class="pre">ID</span></code> level</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df[df[&#39;order_id&#39;].duplicated(keep= False)].sort_values(by = &#39;order_id&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exporting the files</span>
+<span class="c1"># df[df[&#39;order_id&#39;].duplicated(keep= False)].sort_values(by = &#39;order_id&#39;).to_csv(&quot;duplicate_case.csv&quot;, index = False)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="importing-data-in-the-correct-way">
+<h3>Importing data in the correct way<a class="headerlink" href="#importing-data-in-the-correct-way" title="Permalink to this headline">#</a></h3>
+<div class="alert alert-block alert-danger">
+<p><strong>The challenge in the above dataset is that, <code class="docutils literal notranslate"><span class="pre">order_delivery_time</span></code> has been wrongly classified as an object. We need to put it in the right format (time) before we can use the column for further analysis.</strong></p>
+<p><strong>We will make use of the arguments within the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>function</a> to read in the delivery column as a time object</strong></p>
+<p><strong>In the <code class="docutils literal notranslate"><span class="pre">date_parser</span></code> we are specifying the function that we need to choose, the <code class="docutils literal notranslate"><span class="pre">utc</span> <span class="pre">=</span> <span class="pre">True</span></code> argument is choosen as the delivery time is given in a <a class="reference external" href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">utc time format</a></strong></p>
+<div/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span>
+                  <span class="p">,</span><span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span> <span class="c1"># specifies the column</span>
+                  <span class="p">,</span><span class="n">date_parser</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="c1"># which function to apply to it</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 14957 entries, 0 to 14956
+Data columns (total 5 columns):
+ #   Column                   Non-Null Count  Dtype              
+---  ------                   --------------  -----              
+ 0   order_delivery_time      14957 non-null  datetime64[ns, UTC]
+ 1   order_id                 14957 non-null  int64              
+ 2   customer_order_rating    14957 non-null  int64              
+ 3   type_of_issue _reported  1087 non-null   object             
+ 4   region                   14957 non-null  object             
+dtypes: datetime64[ns, UTC](1), int64(2), object(2)
+memory usage: 584.4+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_delivery_time</th>
+      <th>order_id</th>
+      <th>customer_order_rating</th>
+      <th>type_of_issue _reported</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-06-02 04:23:16+00:00</td>
+      <td>233599337</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-06-02 03:57:50+00:00</td>
+      <td>233599376</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-06-02 02:52:38+00:00</td>
+      <td>233599328</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-06-02 02:52:04+00:00</td>
+      <td>233599070</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-06-02 02:41:43+00:00</td>
+      <td>233599100</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="data-cleaning">
+<h2>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># the tolist() gives the output in a list format</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;chi&#39;, &#39;nyc&#39;, &#39;sf&#39;, &#39;sf &#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>In the above list, you can see that there are two enteries for <code class="docutils literal notranslate"><span class="pre">sf</span></code>. Its because there is a whitespace in the data. We need to remove it, before we can do the analysis.</strong><br />
+<strong>We will make use of a string function <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/1.2.4/reference/api/pandas.Series.str.strip.html"><code class="docutils literal notranslate"><span class="pre">str.strip()</span></code></a> to do it</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;chi&#39;, &#39;nyc&#39;, &#39;sf&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>The problem of multiple <code class="docutils literal notranslate"><span class="pre">sf</span></code> versions is solved</strong></p>
+</section>
+<section id="exploring-the-delivery-time-across-regions">
+<h2>Exploring the delivery time across regions<a class="headerlink" href="#exploring-the-delivery-time-across-regions" title="Permalink to this headline">#</a></h2>
+<p>💡<strong>We can extract different elements from a time column like date, hour, minutes, weekday etc. We will extract the hour</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;hour&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_delivery_time</th>
+      <th>order_id</th>
+      <th>customer_order_rating</th>
+      <th>type_of_issue _reported</th>
+      <th>region</th>
+      <th>hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-06-02 04:23:16+00:00</td>
+      <td>233599337</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-06-02 03:57:50+00:00</td>
+      <td>233599376</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-06-02 02:52:38+00:00</td>
+      <td>233599328</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-06-02 02:52:04+00:00</td>
+      <td>233599070</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-06-02 02:41:43+00:00</td>
+      <td>233599100</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>chi</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="alert alert-block alert-danger">
+<p>💡 <strong>[Good to know] Pandas also allows you to highlight cells/rows/columns to highlight specific aspects of your data. This is done using styling.Let’s generate the head view again, highlighting the new column that we created. Read more. <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html">here</a></strong></p>
+<div/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;background-color&#39;</span><span class="p">:</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;border-color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="n">subset</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_3fe51_row0_col5, #T_3fe51_row1_col5, #T_3fe51_row2_col5, #T_3fe51_row3_col5, #T_3fe51_row4_col5 {
+  background-color: darkred;
+  color: white;
+  border-color: white;
+}
+</style>
+<table id="T_3fe51">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_3fe51_level0_col0" class="col_heading level0 col0" >order_delivery_time</th>
+      <th id="T_3fe51_level0_col1" class="col_heading level0 col1" >order_id</th>
+      <th id="T_3fe51_level0_col2" class="col_heading level0 col2" >customer_order_rating</th>
+      <th id="T_3fe51_level0_col3" class="col_heading level0 col3" >type_of_issue _reported</th>
+      <th id="T_3fe51_level0_col4" class="col_heading level0 col4" >region</th>
+      <th id="T_3fe51_level0_col5" class="col_heading level0 col5" >hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_3fe51_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3fe51_row0_col0" class="data row0 col0" >2014-06-02 04:23:16+00:00</td>
+      <td id="T_3fe51_row0_col1" class="data row0 col1" >233599337</td>
+      <td id="T_3fe51_row0_col2" class="data row0 col2" >5</td>
+      <td id="T_3fe51_row0_col3" class="data row0 col3" >nan</td>
+      <td id="T_3fe51_row0_col4" class="data row0 col4" >chi</td>
+      <td id="T_3fe51_row0_col5" class="data row0 col5" >4</td>
+    </tr>
+    <tr>
+      <th id="T_3fe51_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_3fe51_row1_col0" class="data row1 col0" >2014-06-02 03:57:50+00:00</td>
+      <td id="T_3fe51_row1_col1" class="data row1 col1" >233599376</td>
+      <td id="T_3fe51_row1_col2" class="data row1 col2" >5</td>
+      <td id="T_3fe51_row1_col3" class="data row1 col3" >nan</td>
+      <td id="T_3fe51_row1_col4" class="data row1 col4" >chi</td>
+      <td id="T_3fe51_row1_col5" class="data row1 col5" >3</td>
+    </tr>
+    <tr>
+      <th id="T_3fe51_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_3fe51_row2_col0" class="data row2 col0" >2014-06-02 02:52:38+00:00</td>
+      <td id="T_3fe51_row2_col1" class="data row2 col1" >233599328</td>
+      <td id="T_3fe51_row2_col2" class="data row2 col2" >5</td>
+      <td id="T_3fe51_row2_col3" class="data row2 col3" >nan</td>
+      <td id="T_3fe51_row2_col4" class="data row2 col4" >chi</td>
+      <td id="T_3fe51_row2_col5" class="data row2 col5" >2</td>
+    </tr>
+    <tr>
+      <th id="T_3fe51_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_3fe51_row3_col0" class="data row3 col0" >2014-06-02 02:52:04+00:00</td>
+      <td id="T_3fe51_row3_col1" class="data row3 col1" >233599070</td>
+      <td id="T_3fe51_row3_col2" class="data row3 col2" >5</td>
+      <td id="T_3fe51_row3_col3" class="data row3 col3" >nan</td>
+      <td id="T_3fe51_row3_col4" class="data row3 col4" >chi</td>
+      <td id="T_3fe51_row3_col5" class="data row3 col5" >2</td>
+    </tr>
+    <tr>
+      <th id="T_3fe51_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_3fe51_row4_col0" class="data row4 col0" >2014-06-02 02:41:43+00:00</td>
+      <td id="T_3fe51_row4_col1" class="data row4 col1" >233599100</td>
+      <td id="T_3fe51_row4_col2" class="data row4 col2" >5</td>
+      <td id="T_3fe51_row4_col3" class="data row4 col3" >nan</td>
+      <td id="T_3fe51_row4_col4" class="data row4 col4" >chi</td>
+      <td id="T_3fe51_row4_col5" class="data row4 col5" >2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="plot-the-deliveries-in-sf">
+<h3>Plot the deliveries in <code class="docutils literal notranslate"><span class="pre">sf</span></code><a class="headerlink" href="#plot-the-deliveries-in-sf" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># slicing for san franciso</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;sf&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># customise chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot the data </span>
+<span class="n">sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+
+<span class="c1"># customise chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Count of deliveries across region&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;delivery count&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_47_0.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_47_0.png" />
+</div>
+</div>
+</section>
+<section id="plot-the-deliveries-in-all-regions">
+<h3>Plot the deliveries in all regions<a class="headerlink" href="#plot-the-deliveries-in-all-regions" title="Permalink to this headline">#</a></h3>
+<p><strong>Using a loop to generate multiple charts</strong>: We can use the above code used and put it in a loop to plot for all the regions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_list</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">region_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;chi&#39;, &#39;nyc&#39;, &#39;sf&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We will use different ways to generate the charts</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">region_list</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">]</span>
+     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span>
+     <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+     <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;All regions in one chart&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_52_0.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_52_0.png" />
+</div>
+</div>
+<p><strong>Separating the regions across charts</strong></p>
+<div class="alert alert-block alert-success">
+<p><strong>For producing charts in loop, using the <code class="docutils literal notranslate"><span class="pre">df[column]</span> <span class="pre">==</span> <span class="pre">condition</span></code> is much more straight forward than the <code class="docutils literal notranslate"><span class="pre">df.query()</span></code> method. Hence, I altered the code we tried in the OH</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">region_list</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">]</span>
+     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span>
+     <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+     <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="n">region</span><span class="p">)</span>
+    <span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_0.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_0.png" />
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_1.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_1.png" />
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_2.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_55_2.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Further formatting the chart</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop for the multiple regions</span>
+<span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">region_list</span><span class="p">:</span> <span class="c1"># intiate the loop</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># labels</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Count of deliveries across &quot;</span> <span class="o">+</span> <span class="n">region</span><span class="p">)</span> <span class="c1"># to update the title dynamically</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;delivery count&quot;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_0.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_0.png" />
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_1.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_1.png" />
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_2.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_57_2.png" />
+</div>
+</div>
+<div class="alert alert-block alert-danger">
+<p><strong>The order delivery trend look odd. Most of the order seems to be happening at very early hours. You will notice that the <code class="docutils literal notranslate"><span class="pre">order_delivery_time</span></code> is currently measure in the UTC format. We would need to convert it to a local time zone based on the location before we can do our data analysis. We will use <code class="docutils literal notranslate"><span class="pre">dt.tz_convert()</span></code> within pandas to do this. As an argument, we specify the time zone to which it needs to be converted</strong></p>
+<div/><p><strong>We can change the time zones. The options we will choose are : <code class="docutils literal notranslate"><span class="pre">US/Eastern</span></code>, <code class="docutils literal notranslate"><span class="pre">US/Pacific</span></code>, <code class="docutils literal notranslate"><span class="pre">US/Central</span></code></strong></p>
+<p><img alt="us_time_zone-3.jpg" src="attachment:us_time_zone-3.jpg" /></p>
+<div class="alert alert-block alert-danger">
+<p><strong>You can use <code class="docutils literal notranslate"><span class="pre">np.where()</span></code> to convert the time zone on the overall dataset or seperate it by region, make the conversions and join it back togther</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creating new columns</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;local_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;US/Pacific&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;local_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;local_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exploring the new columns</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;background-color&#39;</span><span class="p">:</span> <span class="s1">&#39;darkred&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;border-color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="n">subset</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;local_time&#39;</span><span class="p">,</span> <span class="s1">&#39;local_hour&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_7acab_row0_col6, #T_7acab_row0_col7, #T_7acab_row1_col6, #T_7acab_row1_col7, #T_7acab_row2_col6, #T_7acab_row2_col7, #T_7acab_row3_col6, #T_7acab_row3_col7, #T_7acab_row4_col6, #T_7acab_row4_col7 {
+  background-color: darkred;
+  color: white;
+  border-color: white;
+}
+</style>
+<table id="T_7acab">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_7acab_level0_col0" class="col_heading level0 col0" >order_delivery_time</th>
+      <th id="T_7acab_level0_col1" class="col_heading level0 col1" >order_id</th>
+      <th id="T_7acab_level0_col2" class="col_heading level0 col2" >customer_order_rating</th>
+      <th id="T_7acab_level0_col3" class="col_heading level0 col3" >type_of_issue _reported</th>
+      <th id="T_7acab_level0_col4" class="col_heading level0 col4" >region</th>
+      <th id="T_7acab_level0_col5" class="col_heading level0 col5" >hour</th>
+      <th id="T_7acab_level0_col6" class="col_heading level0 col6" >local_time</th>
+      <th id="T_7acab_level0_col7" class="col_heading level0 col7" >local_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_7acab_level0_row0" class="row_heading level0 row0" >7720</th>
+      <td id="T_7acab_row0_col0" class="data row0 col0" >2014-06-02 06:16:19+00:00</td>
+      <td id="T_7acab_row0_col1" class="data row0 col1" >233599504</td>
+      <td id="T_7acab_row0_col2" class="data row0 col2" >5</td>
+      <td id="T_7acab_row0_col3" class="data row0 col3" >nan</td>
+      <td id="T_7acab_row0_col4" class="data row0 col4" >sf</td>
+      <td id="T_7acab_row0_col5" class="data row0 col5" >6</td>
+      <td id="T_7acab_row0_col6" class="data row0 col6" >2014-06-01 23:16:19-07:00</td>
+      <td id="T_7acab_row0_col7" class="data row0 col7" >23</td>
+    </tr>
+    <tr>
+      <th id="T_7acab_level0_row1" class="row_heading level0 row1" >7721</th>
+      <td id="T_7acab_row1_col0" class="data row1 col0" >2014-06-02 05:58:10+00:00</td>
+      <td id="T_7acab_row1_col1" class="data row1 col1" >233599318</td>
+      <td id="T_7acab_row1_col2" class="data row1 col2" >5</td>
+      <td id="T_7acab_row1_col3" class="data row1 col3" >nan</td>
+      <td id="T_7acab_row1_col4" class="data row1 col4" >sf</td>
+      <td id="T_7acab_row1_col5" class="data row1 col5" >5</td>
+      <td id="T_7acab_row1_col6" class="data row1 col6" >2014-06-01 22:58:10-07:00</td>
+      <td id="T_7acab_row1_col7" class="data row1 col7" >22</td>
+    </tr>
+    <tr>
+      <th id="T_7acab_level0_row2" class="row_heading level0 row2" >7722</th>
+      <td id="T_7acab_row2_col0" class="data row2 col0" >2014-06-02 05:47:00+00:00</td>
+      <td id="T_7acab_row2_col1" class="data row2 col1" >233599434</td>
+      <td id="T_7acab_row2_col2" class="data row2 col2" >5</td>
+      <td id="T_7acab_row2_col3" class="data row2 col3" >nan</td>
+      <td id="T_7acab_row2_col4" class="data row2 col4" >sf</td>
+      <td id="T_7acab_row2_col5" class="data row2 col5" >5</td>
+      <td id="T_7acab_row2_col6" class="data row2 col6" >2014-06-01 22:47:00-07:00</td>
+      <td id="T_7acab_row2_col7" class="data row2 col7" >22</td>
+    </tr>
+    <tr>
+      <th id="T_7acab_level0_row3" class="row_heading level0 row3" >7723</th>
+      <td id="T_7acab_row3_col0" class="data row3 col0" >2014-06-02 05:42:17+00:00</td>
+      <td id="T_7acab_row3_col1" class="data row3 col1" >233599167</td>
+      <td id="T_7acab_row3_col2" class="data row3 col2" >5</td>
+      <td id="T_7acab_row3_col3" class="data row3 col3" >nan</td>
+      <td id="T_7acab_row3_col4" class="data row3 col4" >sf</td>
+      <td id="T_7acab_row3_col5" class="data row3 col5" >5</td>
+      <td id="T_7acab_row3_col6" class="data row3 col6" >2014-06-01 22:42:17-07:00</td>
+      <td id="T_7acab_row3_col7" class="data row3 col7" >22</td>
+    </tr>
+    <tr>
+      <th id="T_7acab_level0_row4" class="row_heading level0 row4" >7724</th>
+      <td id="T_7acab_row4_col0" class="data row4 col0" >2014-06-02 05:40:08+00:00</td>
+      <td id="T_7acab_row4_col1" class="data row4 col1" >233599356</td>
+      <td id="T_7acab_row4_col2" class="data row4 col2" >5</td>
+      <td id="T_7acab_row4_col3" class="data row4 col3" >nan</td>
+      <td id="T_7acab_row4_col4" class="data row4 col4" >sf</td>
+      <td id="T_7acab_row4_col5" class="data row4 col5" >5</td>
+      <td id="T_7acab_row4_col6" class="data row4 col6" >2014-06-01 22:40:08-07:00</td>
+      <td id="T_7acab_row4_col7" class="data row4 col7" >22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;local_hour&#39;</span><span class="p">)[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Delivery count in sf; local time&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_64_0.png" src="_images/IMP_Vikesh_OH7_02Jan2023_Data_analyst-PartiallySolved_64_0.png" />
+</div>
+</div>
+<p><strong>Similar to <code class="docutils literal notranslate"><span class="pre">sf</span></code>, please make convert the data for <code class="docutils literal notranslate"><span class="pre">chi</span></code> and <code class="docutils literal notranslate"><span class="pre">nyc</span></code>. Make use of the appropriate US time-zones. Refer to image below</strong></p>
+<p><strong>Extract different time elements from the time column</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the different elements . Uncomment the codes below</span>
+
+<span class="c1"># date</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># time</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># hour</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># minute</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># weekday</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;order_delivery_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">(),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        2014-06-02
+1        2014-06-02
+2        2014-06-02
+3        2014-06-02
+4        2014-06-02
+            ...    
+14952    2014-05-07
+14953    2014-05-05
+14954    2014-05-04
+14955    2014-05-03
+14956    2014-05-01
+Name: order_delivery_time, Length: 14957, dtype: object 
+
+0        04:23:16
+1        03:57:50
+2        02:52:38
+3        02:52:04
+4        02:41:43
+           ...   
+14952    20:29:32
+14953    23:59:17
+14954    22:48:29
+14955    17:41:36
+14956    23:25:46
+Name: order_delivery_time, Length: 14957, dtype: object 
+
+0         4
+1         3
+2         2
+3         2
+4         2
+         ..
+14952    20
+14953    23
+14954    22
+14955    17
+14956    23
+Name: order_delivery_time, Length: 14957, dtype: int64 
+
+0        23
+1        57
+2        52
+3        52
+4        41
+         ..
+14952    29
+14953    59
+14954    48
+14955    41
+14956    25
+Name: order_delivery_time, Length: 14957, dtype: int64 
+
+0           Monday
+1           Monday
+2           Monday
+3           Monday
+4           Monday
+           ...    
+14952    Wednesday
+14953       Monday
+14954       Sunday
+14955     Saturday
+14956     Thursday
+Name: order_delivery_time, Length: 14957, dtype: object 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-danger">
+<p><strong>Please continue with the rest of the analysis based on what we discussed in the Office hour. Remember the end aim. You need to have actionable insights to solve the problem of customer support team staffing and make observations about the business.</strong></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="IMP_BA_OH5--Class.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Imperial Business Analytics- 🐍 Python Primer 3</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="IMP_Vikesh_OH8_10Jan-23_Complete.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Imperial Business Analytics OH: WK9- Correlation &amp; Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vikesh<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
